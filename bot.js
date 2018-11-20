@@ -1104,36 +1104,8 @@ client.on("guildMemberAdd", (member) => {
        });
     });
 });
-
-client.on('guildMemberAdd', member => {
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const stewart = member.guild.channels.find("name", "chat");
-     stewart.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
-   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
-  }); 
-});
-
-client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', 'not active'));
-});
- 
- 
-client.on('message', message => {                      
-    if(!message.channel.guild) return;
-       if(message.content.startsWith(prefix + 'active')) {
-        let modlog = client.channels.find('name', 'activation');
-       if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-       message.channel.sendMessage(`اضغط على الصح عشان تتفعل`).then(msg => {
-       
-       
-        msg.react('✅')
-       .then(() => msg.react('✅'))
      
      
- 
        let activeFilter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
      
        let active = msg.createReactionCollector(activeFilter, { time: 15000 });
