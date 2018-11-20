@@ -1079,31 +1079,7 @@ client.on('message',async message => {
     }
   });
 
-client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("511278633923510283");
-    if (!channel) {
-        console.log("!the channel id it's not correct");
-        return;
-    }
-    if (member.id == client.user.id) {
-        return;
-    }
-    console.log('-');
-    var guild;
-    while (!guild)
-        guild = client.guilds.get("505754434840559617");
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
- channel.send(`تم دعوته بواسطة  ${Invite.inviter} `) ;        
- }
-            dat[Inv] = Invite.uses;
-       
-       });
-    });
-});
+
      
      
        let activeFilter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
@@ -1178,7 +1154,7 @@ client.on("guildMemberAdd", (member) => {
     }
  
 });
-		
+
 const invites = {};
 
 const wait = require('util').promisify(setTimeout);
@@ -1203,8 +1179,6 @@ client.on('guildMemberAdd', member => {
     logChannel.send(`${member} Invited by: <@${inviter.id}>`);
   });
 });
-
-
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);
